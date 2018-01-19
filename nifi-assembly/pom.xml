@@ -667,6 +667,10 @@ language governing permissions and limitations under the License. -->
                             <preinstallScriptlet>
                                 <script>/usr/bin/getent group nifi &gt;/dev/null || /usr/sbin/groupadd -r nifi; /usr/bin/getent passwd nifi &gt;/dev/null || /usr/sbin/useradd -r -g nifi -d /usr/hdf/3.0.0.0-453/nifi -s /sbin/nologin -c "NiFi System User" nifi</script>
                             </preinstallScriptlet>
+                            <postinstallScriptlet>
+                                <scriptFile>src/main/resources/rpm-postinstall.sh</scriptFile>
+                                <fileEncoding>utf-8</fileEncoding>
+                            </postinstallScriptlet>
                         </configuration>
                         <executions>
                             <execution>
