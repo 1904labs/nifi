@@ -710,7 +710,7 @@ language governing permissions and limitations under the License. -->
                                             <directory>/usr/hdf/${hdf.version}/nifi/ext</directory>
                                             <sources>
                                                 <source>
-                                                    <location>src/main/resources/rpm/ext/ranger</location>
+                                                    <location>src/main/resources/rpm/ext</location>
                                                 </source>
                                             </sources>
                                         </mapping>
