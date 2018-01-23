@@ -671,10 +671,6 @@ language governing permissions and limitations under the License. -->
                             <preinstallScriptlet>
                                 <script>/usr/bin/getent group nifi &gt;/dev/null || /usr/sbin/groupadd -r nifi; /usr/bin/getent passwd nifi &gt;/dev/null || /usr/sbin/useradd -r -g nifi -d /usr/hdf/${hdf.version}/nifi -s /sbin/nologin -c "NiFi System User" nifi</script>
                             </preinstallScriptlet>
-                            <postinstallScriptlet>
-                                <scriptFile>src/main/resources/rpm/postinstall.sh</scriptFile>
-                                <fileEncoding>utf-8</fileEncoding>
-                            </postinstallScriptlet>
                         </configuration>
                         <executions>
                             <execution>
@@ -833,6 +829,14 @@ language governing permissions and limitations under the License. -->
                                                 <source>
                                                     <location>${project.build.directory}/generated-docs</location>
                                                 </source>
+                                            </sources>
+                                        </mapping>
+                                        <mapping>
+                                            <directory>/usr/hdf/current/nifi</directory>
+                                            <sources>
+                                                <softlinkSource>
+                                                    <location>/usr/hdf/${hdf.version}/nifi</location>
+                                                </softlinkSource>
                                             </sources>
                                         </mapping>
                                     </mappings>
