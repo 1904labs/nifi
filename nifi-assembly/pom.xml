@@ -654,8 +654,8 @@ language governing permissions and limitations under the License. -->
                             </defineStatements>
                             <defaultDirmode>750</defaultDirmode>
                             <defaultFilemode>640</defaultFilemode>
-                            <defaultUsername>root</defaultUsername>
-                            <defaultGroupname>root</defaultGroupname>
+                            <defaultUsername>nifi</defaultUsername>
+                            <defaultGroupname>nifi</defaultGroupname>
                             <requires>
                                 <require>hdf-select</require>
                             </requires>
