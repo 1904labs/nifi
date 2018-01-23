@@ -654,8 +654,8 @@ language governing permissions and limitations under the License. -->
                             </defineStatements>
                             <defaultDirmode>750</defaultDirmode>
                             <defaultFilemode>640</defaultFilemode>
-                            <defaultUsername>nifi</defaultUsername>
-                            <defaultGroupname>nifi</defaultGroupname>
+                            <defaultUsername>root</defaultUsername>
+                            <defaultGroupname>root</defaultGroupname>
                             <requires>
                                 <require>hdf-select</require>
                             </requires>
@@ -708,6 +708,7 @@ language governing permissions and limitations under the License. -->
                                         </mapping>
                                         <mapping>
                                             <directory>/usr/hdf/${hdf.version}/nifi/ext</directory>
+                                            <filemode>750</filemode>
                                             <sources>
                                                 <source>
                                                     <location>src/main/resources/rpm/ext</location>
