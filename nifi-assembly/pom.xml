@@ -765,7 +765,7 @@ language governing permissions and limitations under the License. -->
         <profile>
             <id>rpm</id>
             <activation>
-                <activeByDefault>false</activeByDefault>
+                <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
                 <nifi.run.as>nifi</nifi.run.as>
@@ -814,7 +814,7 @@ language governing permissions and limitations under the License. -->
                             <license>Apache License, Version 2.0 and others (see included LICENSE file)</license>
                             <url>http://nifi.apache.org</url>
                             <group>Utilities</group>
-                            <prefix>/opt/nifi</prefix>
+                            <prefix>/etc/nifi</prefix>
                             <defineStatements>
                                 <defineStatement>_use_internal_dependency_generator 0</defineStatement>
                             </defineStatements>
@@ -829,10 +829,10 @@ language governing permissions and limitations under the License. -->
                                 <!-- It is important to note because of the way the plugin calls the command, the sed backup
                                 parameter -i and the sed command do not beed to be wrapped by single or double quotes.
                                 Also note maven properties are processed before RPM variables and before sed commands -->
-                                <script>sed -i s/^run\.as=$/run\.as=${nifi.run.as}/ $RPM_BUILD_ROOT/opt/nifi/nifi-${project.version}/conf/bootstrap.conf</script>
+                                <script>sed -i s/^run\.as=$/run\.as=${nifi.run.as}/ $RPM_BUILD_ROOT/etc/nifi/conf/bootstrap.conf</script>
                             </installScriptlet>
                             <preinstallScriptlet>
-                                <script>/usr/bin/getent group nifi &gt;/dev/null || /usr/sbin/groupadd -r nifi; /usr/bin/getent passwd nifi &gt;/dev/null || /usr/sbin/useradd -r -g nifi -d /opt/nifi -s /sbin/nologin -c "NiFi System User" nifi</script>
+                                <script>/usr/bin/getent group nifi &gt;/dev/null || /usr/sbin/groupadd -r nifi; /usr/bin/getent passwd nifi &gt;/dev/null || /usr/sbin/useradd -r -g nifi -d /etc/nifi -s /sbin/nologin -c "NiFi System User" nifi</script>
                             </preinstallScriptlet>
                         </configuration>
                         <executions>
@@ -848,10 +848,10 @@ language governing permissions and limitations under the License. -->
                                     </provides>
                                     <mappings>
                                         <mapping>
-                                            <directory>/opt/nifi/nifi-${project.version}</directory>
+                                            <directory>/etc/nifi</directory>
                                         </mapping>
                                         <mapping>
-                                            <directory>/opt/nifi/nifi-${project.version}</directory>
+                                            <directory>/etc/nifi</directory>
                                             <sources>
                                                 <source>
                                                     <location>./LICENSE</location>
@@ -866,10 +866,10 @@ language governing permissions and limitations under the License. -->
                                             </sources>
                                         </mapping>
                                         <mapping>
-                                            <directory>/opt/nifi</directory>
+                                            <directory>/etc/nifi</directory>
                                         </mapping>
                                         <mapping>
-                                            <directory>/opt/nifi/nifi-${project.version}/bin</directory>
+                                            <directory>/etc/nifi/bin</directory>
                                             <filemode>750</filemode>
                                             <sources>
                                                 <source>
@@ -885,7 +885,7 @@ language governing permissions and limitations under the License. -->
                                             </sources>
                                         </mapping>
                                         <mapping>
-                                            <directory>/opt/nifi/nifi-${project.version}/conf</directory>
+                                            <directory>/etc/nifi/conf</directory>
                                             <configuration>true</configuration>
                                             <sources>
                                                 <source>
@@ -895,7 +895,7 @@ language governing permissions and limitations under the License. -->
                                             </sources>
                                         </mapping>
                                         <mapping>
-                                            <directory>/opt/nifi/nifi-${project.version}/lib</directory>
+                                            <directory>/etc/nifi/lib</directory>
                                         </mapping>
                                         <!-- The lib excludes and lib/bootstrap 
                                         includes are computed by looking at the desired contents of lib vs the desired 
@@ -904,7 +904,7 @@ language governing permissions and limitations under the License. -->
                                         build and the lib folder should be specific excludes being those which we 
                                         want in bootstrap and NOT in lib. -->
                                         <mapping>
-                                            <directory>/opt/nifi/nifi-${project.version}/lib</directory>
+                                            <directory>/etc/nifi/lib</directory>
                                             <dependency>
                                                 <excludes>
                                                     <exclude>org.bouncycastle:bcprov-jdk15on</exclude>
@@ -943,7 +943,7 @@ language governing permissions and limitations under the License. -->
                                             </dependency>
                                         </mapping>
                                         <mapping>
-                                            <directory>/opt/nifi/nifi-${project.version}/lib/bootstrap</directory>
+                                            <directory>/etc/nifi/lib/bootstrap</directory>
                                             <dependency>
                                                 <includes>
                                                     <include>org.bouncycastle:bcprov-jdk15on</include>
@@ -978,7 +978,7 @@ language governing permissions and limitations under the License. -->
                                             </dependency>
                                         </mapping>
                                         <mapping>
-                                            <directory>/opt/nifi/nifi-${project.version}/docs</directory>
+                                            <directory>/etc/nifi/docs</directory>
                                             <sources>
                                                 <source>
                                                     <location>${project.build.directory}/generated-docs</location>
